@@ -1,16 +1,17 @@
 <template>
   <div class="home">
-    <div id="topNav">
+    <div class="topNav">
       <h1>Home</h1>
-      <strong>{{name}}</strong>
-      <router-link to="/home">back</router-link>
+      <strong>姓名：{{name}}</strong>
+      <router-link to="/welcome">back</router-link>
     </div>
-    <div id="contentLayout">
-      <div id="leftNav">
-        <router-link :to="{name:'todolist'}">todolist</router-link>
-        <router-link :to="{name:'profile'}">profile</router-link>
+    <div class="contentLayout">
+      <div class="leftNav">
+        <router-link class="link" :to="{name:'listContent'}">todolist</router-link>
+        <br />
+        <router-link class="link" :to="{name:'Myinfo'}">info</router-link>
       </div>
-      <div id="content">
+      <div class="content">
           <router-view></router-view>   
       </div>
     </div>
@@ -26,24 +27,31 @@ export default {
   data(){
     return{
     }
+  },
+  created(){
+    this.$router.push({name:'listContent'})
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style>
+.leftNav {
+  background-color: #f5f5f5;
+  float: left;
+  width: 20%;
+  min-height: 500px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.content {
+  background-color: #f6f6f6;
+  float: left;
+  width: 80%;
+  min-height: 500px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+strong{
+  float: right;
 }
-a {
-  color: #42b983;
+.link{
+  margin-left: 20px;
 }
 </style>

@@ -2,14 +2,19 @@ import Vue from 'vue';
 import Router from 'vue-router'
 import Welcome from './views/Welcome.vue'
 import Home from './views/Home.vue'
-import todolist from './components/todolist.vue'
-import MyHeader from './components/Header.vue'
+import Myinfo from './views/Myinfo.vue'
+import listContent from './components/listContent.vue'
 
 Vue.use(Router);
 
 export default new Router({
     mode:"hash",
     routes: [
+        {
+            path: '/',
+            name: 'welcome',
+            component: Welcome,
+        },
         { 
         path: '/welcome', 
         name: 'welcome',
@@ -22,14 +27,15 @@ export default new Router({
         props: true,
         children:[
         {
-            path: 'todolist',
-            name: 'todolist',
-            component: MyHeader
+            path: 'listContent',
+            name: 'listContent',
+            component: listContent
         },
         {
-            path: 'profile',
-            name: 'profile',
-            component: todolist
+            path: 'myinfo',
+            name: 'Myinfo',
+            component: Myinfo,
+            props:true,
         }
         ]
         }

@@ -1,9 +1,8 @@
 #app{
 
     background: rgb(240, 240, 240);
-    min-width: 300px;
-    max-width: 600px;
-    margin:auto;
+    max-width : 60%;
+    margin: auto;
 
 }
 #intro{

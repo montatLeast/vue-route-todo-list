@@ -1,28 +1,15 @@
 <template>
   <div id="app">
-
-  
-    <router-link to="/welcome">23333333333333333333</router-link>
-    <router-link to="/home">aaaaaaaaa</router-link>
-     <router-view></router-view>
-    <!--<list-header></list-header>
-    <todolist></todolist>
-    <list-footer></list-footer> -->
-
+    
+    <router-view />
   </div>
 </template>
 
 <script>
-//import todolist from './components/todolist.vue'
-//import listHeader from './components/Header.vue'
-//import listFooter from './components/Footer.vue'
 
 export default {
   name: 'app',
   components: {
-    //listHeader,
-    //todolist,
-    //listFooter
   }
 }
 </script>
