@@ -6,7 +6,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        nextItemId: 0,
         items_show: [],
         items_all: [],
         status: ""
@@ -31,6 +30,7 @@ export default new Vuex.Store({
         },
         updateItem(state, item) {
             let i_selected = state.items_all.find(i => i.id === item.id);
+            i_selected.content = item.content;
             window.console.log(i_selected);
         }
         ,
@@ -49,7 +49,7 @@ export default new Vuex.Store({
                 content: nextContent,
                 status: false
             }
-            axios.post("http://5d36511286300e0014b64155.mockapi.io/todos/items", item)
+            axios.post("http://localhost:8082/todo_items", item)
                 .then(function (response) {
                     window.console.log(response);
                     context.commit('addItem', response.data);
@@ -59,27 +59,29 @@ export default new Vuex.Store({
                 });
         },
         getAllItems(context) {
-            axios.get("http://5d36511286300e0014b64155.mockapi.io/todos/items")
+            axios.get("http://localhost:8082/todo_items")
                 .then(function (response) {
                     window.console.log(response);
-                    context.commit('addItem', response.data);
+                    context.commit('initAllItems', response.data);
                 })
                 .catch(function (error) {
+                    alert("请不要输入重复值！");
                     window.console.log(error);
                 });
         },
         updateItem(context, item) {
-            axios.put('http://5d36511286300e0014b64155.mockapi.io/todos/items/'+ item.id, item)
+            axios.put('http://localhost:8082/todo_items/'+ item.id, item)
                 .then(function (response) {
                     window.console.log(response);
-                    context.commit('updateStatus', response.data);
+                    context.commit('updateItem', response.data);
                 })
                 .catch(function (error) {
+                    alert("请不要输入重复值！");
                     window.console.log(error);
                 });
         },
         deleteItem(context, item){
-            axios.delete('http://5d36511286300e0014b64155.mockapi.io/todos/items/'+ item.id)
+            axios.delete('http://localhost:8082/todo_items/'+ item.id)
             .then(function (response) {
                 window.console.log(response);
                 context.commit('deleteItem', response.data);

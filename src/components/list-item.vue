@@ -1,11 +1,22 @@
 <template>
   <div class="listitem">
+    <a-modal
+      title="Title"
+      :visible="visible"
+      @ok="handleOk(item1)"
+      @cancel="handleCancel"
+      okText="确定"
+      cancelText="取消"
+    >
+    <span>你将修改为，确定吗:</span>
+    <span>{{editText}}</span>
+    </a-modal>
     <a-row>
       <a-col :span="2">
         <label :class="{ isSelected: item1.status}">{{idx + 1}}.</label>
       </a-col>
       <a-col :span="2">
-        <a-checkbox v-model="item1.status" style="zoom:1.5"></a-checkbox>
+        <a-checkbox v-model="item1.status" @change="updateStatus(item1)" style="zoom:1.5"></a-checkbox>
       </a-col>
       <a-col :span="16">
         <input v-if="editable" v-model="editText" @keydown.enter="finishEdit(item1)" style="width:100%"/>
@@ -18,8 +29,8 @@
       <a-col :span="4">
         <a-button
           icon="delete"
+          ghost=true
           @click="deleteSelf(item1)"
-          ghost="true"
           style="border:0 ;color:grey"
         ></a-button>
       </a-col>
@@ -29,19 +40,18 @@
   </div>
 </template>
 
-
-
 <script>
 export default {
   name: "listitem",
   props: {
     item1: Object,
-    idx: Number
+    idx: Number,
   },
   data() {
     return {
       editText: null,
-      editable: false
+      editable: false,
+      visible: false
     };
   },
   methods: {
@@ -49,15 +59,30 @@ export default {
       this.editText = item.content;
       this.editable = true;
     },
-    finishEdit(item) {
-      if (this.editText != null) {
-        item.content = this.editText;
-      }
+    finishEdit() {
       this.editable = false;
-      this.$store.dispatch("updateItem", item);
+      this.visible = true;
     },
     deleteSelf(item) {
       this.$store.dispatch("deleteItem", item);
+    },
+    updateStatus(item){
+      this.$store.dispatch("updateItem", item);
+    },
+    handleOk(item){
+      let item1 = {};
+      item1.id = item.id;
+      item1.content = item.content;
+      item1.status = item.status;
+      if (this.editText != null) {
+        item1.content = this.editText;
+      }
+      this.editable = false;
+      this.$store.dispatch("updateItem", item1);
+      this.visible = false;
+    },
+    handleCancel() {
+      this.visible = false;
     }
   }
 };

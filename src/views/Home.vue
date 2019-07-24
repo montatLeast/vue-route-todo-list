@@ -19,7 +19,7 @@
             <a-col :span="16">
               <a-menu-item key="2">
                 <a-icon type="home" style="color:white"/>
-                <router-link to="/home/">Home</router-link>
+                <router-link :to="{ name: 'home', params: { name: name }}">Home</router-link>
               </a-menu-item>
             </a-col>
             <a-col :span="4">
