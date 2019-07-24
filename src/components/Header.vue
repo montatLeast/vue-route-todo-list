@@ -1,11 +1,12 @@
 <template>
   <div class="listHeader">
-    <div>
+    <div style="padding-bottom:20px">
       <h1 id="title">Vue To Do List</h1>
       <i id="intro">Simple Todo List with adding and filter by diff status</i>
     </div>
-    <input id="input_item" type="text" v-model="nextItem" />
-    <button id="button_add" @click="addNewItem">Add</button>
+    <a-input id="input_item" type="text" placeholder="Input content" v-model="nextItem" ref="userNameInput"></a-input>
+
+    <a-button type="primary" icon="plus"  @click="addNewItem">Add</a-button>
   </div>
 </template>
 

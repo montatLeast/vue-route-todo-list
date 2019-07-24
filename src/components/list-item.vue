@@ -1,14 +1,31 @@
 <template>
   <div class="listitem">
-    <div class="list-item">
-      <label  :class="{ isSelected: item1.status}"> {{idx + 1}}.</label>
-      <input class="check-box" type="checkbox" name="checkbox" v-model="item1.status" />
-      <!--<span :class="{ drawLine: item1.status}" @dblclick="openEdit(item1)">{{ item1.content }}</span>-->
-      <input id="edit" class="edit" v-if="editable"
-        v-model="editText" @keydown.enter="finishEdit(item1)" />
-        <span :class="{ drawLine: item1.status}" @dblclick="openEdit(item1)" v-else>{{ item1.content }}</span>
-      <button class="delete" @click="deleteSelf(item1)">×</button>
-    </div>
+    <a-row>
+      <a-col :span="2">
+        <label :class="{ isSelected: item1.status}">{{idx + 1}}.</label>
+      </a-col>
+      <a-col :span="2">
+        <a-checkbox v-model="item1.status" style="zoom:1.5"></a-checkbox>
+      </a-col>
+      <a-col :span="16">
+        <input v-if="editable" v-model="editText" @keydown.enter="finishEdit(item1)" style="width:100%"/>
+        <span
+          :class="{ drawLine: item1.status}"
+          @dblclick="openEdit(item1)"
+          v-else
+        >{{ item1.content }}</span>
+      </a-col>
+      <a-col :span="4">
+        <a-button
+          icon="delete"
+          @click="deleteSelf(item1)"
+          ghost="true"
+          style="border:0 ;color:grey"
+        ></a-button>
+      </a-col>
+    </a-row>
+
+    <!--<span :class="{ drawLine: item1.status}" @dblclick="openEdit(item1)">{{ item1.content }}</span>-->
   </div>
 </template>
 
@@ -19,12 +36,12 @@ export default {
   name: "listitem",
   props: {
     item1: Object,
-    idx : Number
+    idx: Number
   },
   data() {
     return {
       editText: null,
-      editable: false,
+      editable: false
     };
   },
   methods: {
@@ -39,7 +56,7 @@ export default {
       this.editable = false;
       this.$store.dispatch("updateItem", item);
     },
-    deleteSelf(item){
+    deleteSelf(item) {
       this.$store.dispatch("deleteItem", item);
     }
   }

@@ -9,13 +9,14 @@
     font-style: italic;
     font-size: 18px;
 }
-
+#name,
 #input_item{
     margin-right: 20px;
-    margin-left: 20px;
-    width: 380px;
-    height: 28px;
+
+    width: 400px;
+    height: 30px;
 }
+
 #button_add{
     width: 70px;
     height: 40px;
@@ -30,8 +31,7 @@
 }
 .listitem{
     margin-top: 20px;
-    width: 380px;
-    height: 30px;
+    width: 400px;
     font-size: 20px;
 }
 .check-box{
@@ -73,5 +73,8 @@ span{
     height: 20px;
 }
 .even{
-    background-color: pink;
+    background-color: #f5f5f5;
+}
+.welcome{
+    text-align: center;
 }

@@ -1,9 +1,21 @@
 <template>
   <div class="todolist">
-    <ol>
-    <li is="listitem" v-for="(item,index) in itemShow" :class="{even : index%2==0}" 
-    v-bind:key="index" v-bind:item1="item" v-bind:idx="index"></li>
-    </ol>
+    
+
+  <a-list
+    itemLayout="horizontal"
+    :dataSource="itemShow"
+  >
+    <a-list-item slot="renderItem" slot-scope="item, index">
+      <a-list-item-meta is="listitem"
+        :class="{even : index%2==0}"
+        v-bind:key="index"
+        v-bind:item1="item"
+        v-bind:idx="index"
+        style="width:100%">
+      </a-list-item-meta>
+    </a-list-item>
+  </a-list>
   </div>
 </template>
 
