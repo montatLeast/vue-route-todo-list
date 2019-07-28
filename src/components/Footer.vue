@@ -1,9 +1,9 @@
 <template>
   <div class="listFooter">
     <div class="buttons">
-      <button class="selector" @click="getState('All')">ALL</button>
-      <button class="selector" @click="getState('Active')">Active</button>
-      <button class="selector" @click="getState('Complete')">Complete</button>
+      <a-button type="primary" class="selector" @click="getState('All')">ALL</a-button>
+      <a-button type="primary" class="selector" @click="getState('Active')">Active</a-button>
+      <a-button type="primary" class="selector" @click="getState('Complete')">Complete</a-button>
     </div>
   </div>
 </template>

@@ -8,8 +8,7 @@
       okText="确定"
       cancelText="取消"
     >
-    <span>你将修改为，确定吗:</span>
-    <span>{{editText}}</span>
+    <span>你将修改为{{editText}},确定吗:</span>
     </a-modal>
     <a-row>
       <a-col :span="2">

@@ -49,7 +49,7 @@ export default new Vuex.Store({
                 content: nextContent,
                 status: false
             }
-            axios.post("http://localhost:8082/todo_items", item)
+            axios.post("http://localhost:8080/todo_items", item)
                 .then(function (response) {
                     window.console.log(response);
                     context.commit('addItem', response.data);
@@ -59,7 +59,7 @@ export default new Vuex.Store({
                 });
         },
         getAllItems(context) {
-            axios.get("http://localhost:8082/todo_items")
+            axios.get("http://localhost:8080/todo_items")
                 .then(function (response) {
                     window.console.log(response);
                     context.commit('initAllItems', response.data);
@@ -70,7 +70,7 @@ export default new Vuex.Store({
                 });
         },
         updateItem(context, item) {
-            axios.put('http://localhost:8082/todo_items/'+ item.id, item)
+            axios.put('http://localhost:8080/todo_items/'+ item.id, item)
                 .then(function (response) {
                     window.console.log(response);
                     context.commit('updateItem', response.data);
@@ -81,7 +81,7 @@ export default new Vuex.Store({
                 });
         },
         deleteItem(context, item){
-            axios.delete('http://localhost:8082/todo_items/'+ item.id)
+            axios.delete('http://localhost:8080/todo_items/'+ item.id)
             .then(function (response) {
                 window.console.log(response);
                 context.commit('deleteItem', response.data);

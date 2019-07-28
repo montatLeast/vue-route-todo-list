@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <input id="name" type="text" placeholder="input your name!" v-model="myName" />
+    <a-input id="name" type="text" placeholder="input your name!" v-model="myName" />
     <a-button  type="primary" icon="login" id="toHome" @click="jumpToHome">首页</a-button>
   </div>
 </template>
